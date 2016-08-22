@@ -82,7 +82,7 @@ def _(ctx, src, key, value, discard=False):
 
 
 @filter_by_range.register("sql")
-def _(ctx, src, field, low, high, discard=False):
+def _(ctx, src, key, low, high, discard=False):
     """Filter by range: field should be between low and high."""
 
     statement = src.sql_statement()
