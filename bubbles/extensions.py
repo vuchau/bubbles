@@ -20,7 +20,7 @@ __all__ = [
 _default_modules = {
     "store": {
         "sql":"bubbles.backends.sql.objects",
-        "mongo":"bubbles.backends.sql.mongo",
+        "mongo":"bubbles.backends.mongo.objects",
         "csv":"bubbles.backends.text.objects",
         "datapackage":"bubbles.datapackage",
         "datapackages":"bubbles.datapackage",

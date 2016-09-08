@@ -238,7 +238,7 @@ class Operation(object):
         return matches
 
 
-    def register(self, *signature, name=None):
+    def register(self, *signatures, name=None):
         sig = None
 
         def register_function(func):
@@ -256,8 +256,8 @@ class Operation(object):
             func.__name__ = self.name
             return func
 
-        if signature and callable(signature[0]):
-            func, *signature = signature
+        if signatures and callable(signatures[0]):
+            func, *signature = signatures
 
             # Create default signature if none is provided
             if not signature:
@@ -266,7 +266,7 @@ class Operation(object):
             sig = Signature(*signature)
             return register_function(func)
         else:
-            sig = Signature(*signature)
+            sig = Signature(*signatures)
             return register_function
 
     def __str__(self):
@@ -305,6 +305,5 @@ def operation(*args):
         # This is just returning the decorator
         opcount = args[0]
         return decorator
-
 
 

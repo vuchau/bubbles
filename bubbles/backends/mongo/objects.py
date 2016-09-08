@@ -36,6 +36,7 @@ def default_store(database, host, port):
 
 class MongoDBStore(DataStore):
     __identifier__ = "mongo"
+    __extension_name__ = "mongo"
 
     def __init__(self, database, host='localhost', port=27017, client=None):
         """Creates a MongoDB data object store."""
@@ -58,7 +59,7 @@ class MongoDBStore(DataStore):
         raise NotImplementedError
 
     def create(self, name, fields, replace=False):
-        obj = MongoDBCollection(name, fields=fields, store=self)
+        obj = MongoDBCollection(name, fields=fields, store=self, truncate=replace)
 
         if replace:
             # The only way how to check for collection existence is to look if
@@ -81,7 +82,7 @@ class MongoDBCollection(DataObject):
 
     def __init__(self, collection, fields, truncate=False,
                  expand=False,
-                 database=None, host='localhsot', port=27017,
+                 database=None, host='localhost', port=27017,
                  store=None):
         """Creates a MongoDB data object.
 
